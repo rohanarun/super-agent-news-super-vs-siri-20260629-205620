@@ -1,0 +1,283 @@
+/* =============================
+   Super Landing Design System
+   Paper / Ink visual language
+   ============================= */
+
+:root {
+  --paper: #f7f5ef;
+  --ink: #0a0a0a;
+  --muted: #68645d;
+  --white: #ffffff;
+  --line: rgba(10, 10, 10, 0.12);
+  --radius-xl: 34px;
+  --radius-lg: 24px;
+  --radius-md: 18px;
+  --shadow-soft: 0 28px 80px rgba(24, 22, 18, 0.12);
+  --shadow-hard: 0 26px 80px rgba(0, 0, 0, 0.18);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  font-family: 'Cabinet Grotesk', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(10,10,10,0.04), transparent 60%),
+    radial-gradient(1000px 500px at 90% 10%, rgba(10,10,10,0.05), transparent 55%),
+    var(--paper);
+}
+
+.page {
+  overflow-x: hidden;
+}
+
+/* Ambient layers */
+.ambient-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(10,10,10,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10,10,10,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.25;
+  z-index: 0;
+}
+
+.paper-noise {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="200" height="200" filter="url(%23n)" opacity="0.05"/></svg>');
+  z-index: 1;
+}
+
+.shell {
+  position: relative;
+  max-width: 1200px;
+  padding: 0 24px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+/* Navigation */
+.nav {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(247,245,239,0.7);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-soft);
+  z-index: 10;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+}
+
+.brand img {
+  width: 28px;
+  height: 28px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 18px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.nav-cta {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--white);
+  box-shadow: var(--shadow-hard);
+}
+
+.btn-secondary {
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: var(--shadow-soft);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Hero */
+.hero {
+  padding-top: 160px;
+  padding-bottom: 140px;
+  text-align: center;
+}
+
+.hero h1 {
+  max-width: 1120px;
+  margin: 0 auto 24px;
+  font-size: clamp(40px, 6vw, 72px);
+  line-height: 1.05;
+  font-weight: 800;
+}
+
+.hero-sub {
+  max-width: 760px;
+  margin: 0 auto 36px;
+  font-size: 20px;
+  color: var(--muted);
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 60px;
+}
+
+.media-frame {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-hard);
+  background: #000;
+}
+
+.hero-video-frame {
+  max-width: 960px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+}
+
+.media-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Chapters */
+.chapter {
+  padding: 160px 0;
+}
+
+.chapter h2 {
+  font-size: clamp(32px, 4vw, 48px);
+  margin-bottom: 24px;
+}
+
+.chapter p {
+  max-width: 760px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* Comparison */
+.compare-grid {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.compare-card {
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+.compare-card.highlight {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.compare-card ul {
+  padding-left: 18px;
+}
+
+/* Bento */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin: 64px 0;
+  grid-auto-flow: dense;
+}
+
+.bento-item {
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
+}
+
+/* CTA band */
+.cta-band {
+  padding: 120px 0;
+  background: var(--ink);
+  color: var(--white);
+  text-align: center;
+}
+
+.cta-band h2 {
+  margin-bottom: 18px;
+}
+
+/* Sources */
+.sources .source-card {
+  margin-top: 18px;
+}
+
+.sources a {
+  color: var(--ink);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav {
+    grid-template-columns: auto auto;
+  }
+  .nav-links {
+    display: none;
+  }
+  .hero-actions {
+    flex-direction: column;
+  }
+  .chapter {
+    padding: 100px 0;
+  }
+}
